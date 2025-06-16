@@ -12,12 +12,12 @@ const traktoren = {
 
 const zubehoer = [
   "Frontlader", "Frontgewicht", "Rasenbereifung", "Ackerschlepper-Bereifung",
-  "Forstbereifung", "Anh�ngerkupplung", "Schlegelmulcher", "Fr�se",
+  "Forstbereifung", "Anhängerkupplung", "Schlegelmulcher", "Fräse",
   "Schneeschild", "Schneeketten", "Kabine", "Verdeck", "Frontzapfwelle",
   "Heckhydraulik", "Zusatzhydraulik", "Arbeitsscheinwerfer", "Komfortsitz",
   "Radio/Bluetooth", "GPS Vorbereitung", "Klimaanlage", "Heizung",
-  "R�ckfahrkamera", "Seitenschneider", "M�hwerk", "Pflug", "Kreiselm�her",
-  "Seilwinde", "Holzspalter", "Ladewagen", "D�ngerstreuer"
+  "Rückfahrkamera", "Seitenschneider", "Mähwerk", "Pflug", "Kreiselmäher",
+  "Seilwinde", "Holzspalter", "Ladewagen", "Düngerstreuer"
 ];
 
 export default function TraktorenKonfigurator() {
@@ -39,14 +39,19 @@ export default function TraktorenKonfigurator() {
   };
 
   if (submitted) {
-    return <div className="p-4 text-center text-xl">Vielen Dank f�r Ihre Anfrage!</div>;
+    return (
+      <div className="p-4 text-center text-xl">
+        Vielen Dank für Ihre Anfrage!
+      </div>
+    );
   }
 
   if (!marke) {
     return (
       <div className="p-4 text-center">
-        <h1 className="text-2xl mb-4">Willkommen bei Motorschulte</h1>
-        <p className="mb-4">Bitte w�hlen Sie eine Marke:</p>
+        <img src="/images/motorschulte_logo.png" className="mx-auto mb-4 w-40" alt="Motorschulte Logo" />
+        <h1 className="text-2xl mb-4 font-bold">Willkommen bei Motorschulte</h1>
+        <p className="mb-4">Bitte wählen Sie eine Marke:</p>
         <div className="flex justify-center gap-4">
           <button className="btn" onClick={() => setMarke('TYM')}>TYM</button>
           <button className="btn" onClick={() => setMarke('TAFE')}>TAFE</button>
@@ -58,13 +63,18 @@ export default function TraktorenKonfigurator() {
   if (!modell) {
     return (
       <div className="p-4 text-center">
-        <h2 className="text-xl mb-4">W�hlen Sie ein Modell ({marke}):</h2>
+        <h2 className="text-xl mb-4">Wählen Sie ein Modell ({marke}):</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {traktoren[marke].map(m => (
-            <div key={m} className="border p-4 cursor-pointer" onClick={() => setModell(m)}>
-              {m}
-            </div>
-          ))}
+          {traktoren[marke].map(m => {
+            const bildName = m.toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9]/gi, '');
+            const bildPfad = `/images/${marke.toLowerCase()}_${bildName}.jpg`;
+            return (
+              <div key={m} className="border p-4 cursor-pointer hover:shadow-lg" onClick={() => setModell(m)}>
+                <img src={bildPfad} alt={m} className="mx-auto mb-2 h-40 object-contain" />
+                <div>{m}</div>
+              </div>
+            )
+          })}
         </div>
       </div>
     );
@@ -73,7 +83,7 @@ export default function TraktorenKonfigurator() {
   if (optionen.length < 1) {
     return (
       <div className="p-4">
-        <h2 className="text-xl mb-4">W�hlen Sie das Zubeh�r f�r {modell}:</h2>
+        <h2 className="text-xl mb-4">Wählen Sie das Zubehör für {modell}:</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {zubehoer.map(option => (
             <label key={option} className="flex items-center gap-2">
@@ -92,9 +102,21 @@ export default function TraktorenKonfigurator() {
       <div className="p-4">
         <h2 className="text-xl mb-4">Ihre Kontaktdaten</h2>
         <div className="space-y-4">
-          <input placeholder="Name" className="input" onChange={e => setKontakt({ ...kontakt, name: e.target.value })} />
-          <input placeholder="E-Mail" className="input" onChange={e => setKontakt({ ...kontakt, email: e.target.value })} />
-          <input placeholder="Telefon" className="input" onChange={e => setKontakt({ ...kontakt, telefon: e.target.value })} />
+          <input
+            placeholder="Name"
+            className="input"
+            onChange={e => setKontakt({ ...kontakt, name: e.target.value })}
+          />
+          <input
+            placeholder="E-Mail"
+            className="input"
+            onChange={e => setKontakt({ ...kontakt, email: e.target.value })}
+          />
+          <input
+            placeholder="Telefon"
+            className="input"
+            onChange={e => setKontakt({ ...kontakt, telefon: e.target.value })}
+          />
         </div>
         <button className="btn mt-4" onClick={handleSubmit}>Anfrage absenden</button>
       </div>
