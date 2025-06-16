@@ -12,12 +12,12 @@ const traktoren = {
 
 const zubehoer = [
   "Frontlader", "Frontgewicht", "Rasenbereifung", "Ackerschlepper-Bereifung",
-  "Forstbereifung", "Anhängerkupplung", "Schlegelmulcher", "Fräse",
+  "Forstbereifung", "Anhï¿½ngerkupplung", "Schlegelmulcher", "Frï¿½se",
   "Schneeschild", "Schneeketten", "Kabine", "Verdeck", "Frontzapfwelle",
   "Heckhydraulik", "Zusatzhydraulik", "Arbeitsscheinwerfer", "Komfortsitz",
   "Radio/Bluetooth", "GPS Vorbereitung", "Klimaanlage", "Heizung",
-  "Rückfahrkamera", "Seitenschneider", "Mähwerk", "Pflug", "Kreiselmäher",
-  "Seilwinde", "Holzspalter", "Ladewagen", "Düngerstreuer"
+  "Rï¿½ckfahrkamera", "Seitenschneider", "Mï¿½hwerk", "Pflug", "Kreiselmï¿½her",
+  "Seilwinde", "Holzspalter", "Ladewagen", "Dï¿½ngerstreuer"
 ];
 
 export default function TraktorenKonfigurator() {
@@ -39,14 +39,14 @@ export default function TraktorenKonfigurator() {
   };
 
   if (submitted) {
-    return <div className="p-4 text-center text-xl">Vielen Dank für Ihre Anfrage!</div>;
+    return <div className="p-4 text-center text-xl">Vielen Dank fï¿½r Ihre Anfrage!</div>;
   }
 
   if (!marke) {
     return (
       <div className="p-4 text-center">
         <h1 className="text-2xl mb-4">Willkommen bei Motorschulte</h1>
-        <p className="mb-4">Bitte wählen Sie eine Marke:</p>
+        <p className="mb-4">Bitte wï¿½hlen Sie eine Marke:</p>
         <div className="flex justify-center gap-4">
           <button className="btn" onClick={() => setMarke('TYM')}>TYM</button>
           <button className="btn" onClick={() => setMarke('TAFE')}>TAFE</button>
@@ -58,7 +58,7 @@ export default function TraktorenKonfigurator() {
   if (!modell) {
     return (
       <div className="p-4 text-center">
-        <h2 className="text-xl mb-4">Wählen Sie ein Modell ({marke}):</h2>
+        <h2 className="text-xl mb-4">Wï¿½hlen Sie ein Modell ({marke}):</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {traktoren[marke].map(m => (
             <div key={m} className="border p-4 cursor-pointer" onClick={() => setModell(m)}>
@@ -73,7 +73,7 @@ export default function TraktorenKonfigurator() {
   if (optionen.length < 1) {
     return (
       <div className="p-4">
-        <h2 className="text-xl mb-4">Wählen Sie das Zubehör für {modell}:</h2>
+        <h2 className="text-xl mb-4">Wï¿½hlen Sie das Zubehï¿½r fï¿½r {modell}:</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {zubehoer.map(option => (
             <label key={option} className="flex items-center gap-2">
